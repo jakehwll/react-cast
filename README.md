@@ -5,7 +5,7 @@
 > **Note**:
 > This library is highly unfinished and should not be considered for production.
 
-A casting library for React.JS using contexts.
+Context-based Chromecast Library for React
 
 ## Features
 
@@ -15,6 +15,7 @@ A casting library for React.JS using contexts.
 - [x] Send URL to Chromecast to play.
 - [x] Control playback with `play()`, `pause()`, `stop()`.
 - [ ] Get audio and control with `volume` and `setVolume`.
+- [ ] Get `currentTime` and control with `seek()`
 - [ ] Watches events for updates on chromecast device.
 
 ### Planned Features

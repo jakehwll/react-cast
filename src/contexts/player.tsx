@@ -15,7 +15,7 @@ export const PlayerHandlerContext = createContext(
     setVolume(val: number): void
     mute(): void
     unmute(): void
-    isMuted(): boolean
+    isMuted: boolean | null
     // seeker
     seekTo(val: number): void
     // state
@@ -83,13 +83,29 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
     )
 
   // state functions
-  const setVolume = () => {}
-  const mute = () => {}
-  const unmute = () => {}
-
-  const isMuted = () => {
-    return false
-  }
+  const setVolume = (val: number) =>
+    media &&
+    media.setVolume(
+      new chrome.cast.media.VolumeRequest(new chrome.cast.Volume(val, false)),
+      () => {},
+      (errorCode) => console.warn('[react-cast]', getErrorMessage(errorCode))
+    )
+  const mute = () =>
+    media &&
+    media.setVolume(
+      new chrome.cast.media.VolumeRequest(new chrome.cast.Volume(1, true)),
+      () => {},
+      (errorCode) => console.warn('[react-cast]', getErrorMessage(errorCode))
+    )
+  // TODO Restore old volume on unmute
+  const unmute = () =>
+    media &&
+    media.setVolume(
+      new chrome.cast.media.VolumeRequest(new chrome.cast.Volume(1, false)),
+      () => {},
+      (errorCode) => console.warn('[react-cast]', getErrorMessage(errorCode))
+    )
+  const isMuted = media ? media.volume.muted : null
 
   const seekTo = () => {}
 

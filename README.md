@@ -14,7 +14,7 @@ Context-based Chromecast Library for React
 - [x] Send to Chromecast via browser.
 - [x] Send URL to Chromecast to play.
 - [x] Control playback with `play()`, `pause()`, `stop()`.
-- [ ] Get audio and control with `volume` and `setVolume`.
+- [ ] (Partially implemented) Get audio and control with `volume` and `setVolume`.
 - [ ] Get `currentTime` and control with `seek()`
 - [ ] Watches events for updates on chromecast device.
 
@@ -151,8 +151,29 @@ const Playback = () => {
 - `isMuted()` **UNIMPLEMENTED**
 
 ```jsx
-{
-  /** TODO **/
+import { PlayerHandlerContext } from 'react-cast/contexts/player'
+
+const Volume = () => {
+  const { mute, unmute, setVolume } = useContext(PlayerHandlerContext)
+  return (
+    <>
+      <button type='button' onClick={() => mute()}>
+        Mute
+      </button>
+      <button type='button' onClick={() => unmute()}>
+        Unmute
+      </button>
+      <input
+        type='range'
+        defaultValue={100}
+        min={0}
+        max={100}
+        onChange={(event) => {
+          setVolume(parseInt(event.target.value) / 100)
+        }}
+      />
+    </>
+  )
 }
 ```
 

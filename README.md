@@ -96,12 +96,12 @@ const Casting = () => {
   return (
     <>
       {/** Initiate a connection between sender and receiver. **/}
-      <button type="button" onClick={() => useCast()}>
+      <button type='button' onClick={() => useCast()}>
         Cast
       </button>
       {/** Send some media from the sender to the receiver to render. **/}
       <button
-        type="button"
+        type='button'
         onClick={() =>
           useMedia({
             url: 'https://commondatastorage.googleapis.com/gtv-videos-bucketbig_buck_bunny_1080p.mp4',
@@ -129,13 +129,13 @@ const Playback = () => {
   const { play, pause, stop } = useContext(PlayerHandlerContext)
   return (
     <>
-      <button type="button" onClick={() => play()}>
+      <button type='button' onClick={() => play()}>
         Play
       </button>
-      <button type="button" onClick={() => pause()}>
+      <button type='button' onClick={() => pause()}>
         Pause
       </button>
-      <button type="button" onClick={() => stop()}>
+      <button type='button' onClick={() => stop()}>
         Stop
       </button>
     </>

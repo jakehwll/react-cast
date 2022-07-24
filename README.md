@@ -1,4 +1,4 @@
-<img src="icon.svg" alt="logo" width="376" height="92" height="auto" />
+<img src="icon.svg" alt="logo" width="256" height="256" height="auto" />
 
 # react-cast
 

@@ -23,12 +23,7 @@ interface CastPlayerContextProps {
   // states
   readonly playerState: string | undefined
   setPlayerState(val: string): void
-  readonly currentTime: number
-  setCurrentTime(val: number): void
-  readonly duration: number
-  setDuration(val: number): void
-  readonly fullscreen: boolean
-  setFullscreen(val: boolean): void
+  // info
   readonly mediaInfo: object
   setMediaInfo(val: object): void
 }
@@ -43,10 +38,6 @@ const CastPlayer = ({ children }: CastPlayerProps) => {
   const [session, setSession] = useState<chrome.cast.Session | undefined>()
   const [playerState, setPlayerState] = useState(PLAYER_STATE.IDLE)
 
-  const [currentTime, setCurrentTime] = useState(0)
-  const [duration, setDuration] = useState(0)
-  const [fullscreen, setFullscreen] = useState(false)
-
   const [mediaInfo, setMediaInfo] = useState({})
 
   return (
@@ -58,12 +49,7 @@ const CastPlayer = ({ children }: CastPlayerProps) => {
         // states
         playerState,
         setPlayerState,
-        currentTime,
-        setCurrentTime,
-        duration,
-        setDuration,
-        fullscreen,
-        setFullscreen,
+        // info
         mediaInfo,
         setMediaInfo,
       }}

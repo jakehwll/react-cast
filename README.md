@@ -32,51 +32,11 @@ To use react-cast you need to wrap all your elements with a `<ReactCast />` elem
 
 This will provide both the `CastPlayerContext` and `PlayerHandlerContext` to be used by your app.
 
+- `CastPlayerContext` stores things like the chromecast `session` and players current `playerState`.
+- `PlayerHandlerContext` stores things like the `play()` and `pause()` functions along with the `currentTime`, `duration`, `isMuted` etc.
+
 ```jsx
 <ReactCast>{/** Logic goes here. **/}</ReactCast>
-```
-
-### useContext(CastPlayerContext)
-
-`useContext(PlayerHandlerContext)` will return an object with..
-
-#### States
-
-- `playerState` The current `state` of the player, valid elements are contained in `VALID_STATES`
-- `setPlayerState` Takes a string from `VALID_STATES`
-
-```jsx
-import { CastPlayerContext } from 'react-cast/contexts/cast'
-
-const State = () => {
-  const { playerState } = useContext(CastPlayerContext)
-
-  return (
-    <>
-      Current player state: {playerState}
-      <ul>
-        <li>Idle? {(playerState === 'IDLE').toString()}</li>
-        <li>Buffering? {(playerState === 'BUFFERING').toString()}</li>
-        <li>Loaded? {(playerState === 'LOADED').toString()}</li>
-        <li>Playing? {(playerState === 'PLAYING').toString()}</li>
-        <li>Paused? {(playerState === 'PAUSED').toString()}</li>
-      </ul>
-    </>
-  )
-}
-```
-
-#### Values
-
-- `currentTime` **UNIMPLEMENTED** The current time of the playhead for the player.
-- `duration` **UNIMPLEMENTED** The current duration of the whole video loaded in the player.
-- `fullscreen` **UNIMPLEMENTED** Unused?
-- `mediaInfo` **UNIMPLEMENTED**
-
-```jsx
-{
-  /** TODO **/
-}
 ```
 
 ### useContext(PlayerHandlerContext)
@@ -182,6 +142,61 @@ const Volume = () => {
 - `seekTo()` **UNIMPLEMENTED**
 
 ```jsx
+{
+  /** TODO **/
+}
+```
+
+### useContext(CastPlayerContext)
+
+`useContext(CastPlayerContext)` will return an object with..
+
+#### Sessions
+
+- `session` The current `chrome.cast.Session` if one is defined.
+
+```jsx
+const { session } = useContext(CastPlayerContext)
+const Session = () => {
+  return (
+    <>
+      <span>
+        Are we currently casting? {(session !== undefined).toString()}
+      </span>
+    </>
+  )
+}
+```
+
+#### States
+
+- `playerState` The current `state` of the player, valid elements are contained in `VALID_STATES`
+- `setPlayerState` Takes a string from `VALID_STATES`
+
+```jsx
+import { CastPlayerContext } from 'react-cast/contexts/cast'
+
+const State = () => {
+  const { playerState } = useContext(CastPlayerContext)
+
+  return (
+    <>
+      Current player state: {playerState}
+      <ul>
+        <li>Idle? {(playerState === 'IDLE').toString()}</li>
+        <li>Buffering? {(playerState === 'BUFFERING').toString()}</li>
+        <li>Loaded? {(playerState === 'LOADED').toString()}</li>
+        <li>Playing? {(playerState === 'PLAYING').toString()}</li>
+        <li>Paused? {(playerState === 'PAUSED').toString()}</li>
+      </ul>
+    </>
+  )
+}
+```
+
+#### Media Info
+
+```
 {
   /** TODO **/
 }

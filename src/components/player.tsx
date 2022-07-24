@@ -28,7 +28,7 @@ const Media: React.FC<ContextProps> = ({ children }: ContextProps) => {
           initiated: isInitiated,
         }}
       >
-        {isInitiated ? 'initiated' : 'not initiated'}
+        <span>{isInitiated ? 'initiated' : 'not initiated'}</span>
         {children}
       </MediaContext.Provider>
     </>

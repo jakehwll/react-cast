@@ -38,8 +38,45 @@ This will provide both the `CastPlayerContext` and `PlayerHandlerContext` to be 
 
 ### useContext(CastPlayerContext)
 
-```sh
-# TODO
+`useContext(PlayerHandlerContext)` will return an object with..
+
+#### States
+
+- `playerState` The current `state` of the player, valid elements are contained in `VALID_STATES`
+- `setPlayerState` Takes a string from `VALID_STATES`
+
+```jsx
+import { CastPlayerContext } from 'react-cast/contexts/cast'
+
+const State = () => {
+  const { playerState } = useContext(CastPlayerContext)
+
+  return (
+    <>
+      Current player state: {playerState}
+      <ul>
+        <li>Idle? {(playerState === 'IDLE').toString()}</li>
+        <li>Buffering? {(playerState === 'BUFFERING').toString()}</li>
+        <li>Loaded? {(playerState === 'LOADED').toString()}</li>
+        <li>Playing? {(playerState === 'PLAYING').toString()}</li>
+        <li>Paused? {(playerState === 'PAUSED').toString()}</li>
+      </ul>
+    </>
+  )
+}
+```
+
+#### Values
+
+- `currentTime` **UNIMPLEMENTED** The current time of the playhead for the player.
+- `duration` **UNIMPLEMENTED** The current duration of the whole video loaded in the player.
+- `fullscreen` **UNIMPLEMENTED** Unused?
+- `mediaInfo` **UNIMPLEMENTED**
+
+```jsx
+{
+  /** TODO **/
+}
 ```
 
 ### useContext(PlayerHandlerContext)

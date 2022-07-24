@@ -55,12 +55,6 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
         const _playerController = new cast.framework.RemotePlayerController(
           _playerTarget
         )
-        _playerController.addEventListener(
-          cast.framework.RemotePlayerEventType.ANY_CHANGE,
-          () => {
-            console.log('asdfoiasdjoiasdoijasdjoiiojs')
-          }
-        )
       }
     }
   }, [])

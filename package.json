@@ -1,0 +1,17 @@
+{
+  "name": "react-cast",
+  "version": "1.0.0",
+  "description": "Library for casting to Chrome-cast devices.",
+  "main": "index.js",
+  "repository": "https://github.com/jakehwll/react-cast",
+  "author": "Jake Howell <jake@hwll.me>",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-helmet": "^6.1.5",
+    "react": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  }
+}

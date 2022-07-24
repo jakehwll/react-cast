@@ -7,6 +7,11 @@
 
 Context-based Chromecast Library for React
 
+```sh
+# add dependency
+yarn add @jakehwll/react-cast
+```
+
 ## Features
 
 ### Features
@@ -225,3 +230,18 @@ const State = () => {
   /** TODO **/
 }
 ```
+
+## Development
+
+The easiest way to get started is by running the following commands.
+
+```sh
+# install dependencies
+yarn install
+# build code
+yarn build
+```
+
+## Contributing
+
+Checkout our [Contributing](/CONTRIBUTING.md) guidelines.

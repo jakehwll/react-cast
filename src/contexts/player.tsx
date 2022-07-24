@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { getErrorMessage } from 'react-cast/utils/error'
+import { getErrorMessage } from '../utils/error'
 import { CastPlayerContext, PLAYER_STATE } from './cast'
 
 // TODO receiverApplicationId

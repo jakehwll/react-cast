@@ -6,7 +6,11 @@
   "repository": "https://github.com/jakehwll/react-cast",
   "author": "Jake Howell <jake@hwll.me>",
   "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
+    "@types/chromecast-caf-sender": "^1.0.5",
     "@types/react": "^18.0.15",
     "@types/react-helmet": "^6.1.5",
     "react": "^18.2.0",

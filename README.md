@@ -145,10 +145,10 @@ const Playback = () => {
 
 #### Audio
 
-- `setVolume()` **UNIMPLMENTED**
-- `mute()` **UNIMPLMENTED**
-- `unmute()` **UNIMPLEMENTED**
-- `isMuted()` **UNIMPLEMENTED**
+- `setVolume(val)` Sets the players volume to a range between `0.0` and `1.0`.
+- `mute()` Completely mutes the output of the player.
+- `unmute()` Complete unmutes the output of the player. ([Issue](https://github.com/jakehwll/react-cast/issues/1))
+- `isMuted` A `boolean` value as to whether the current output is muted or not.
 
 ```jsx
 import { PlayerHandlerContext } from 'react-cast/contexts/player'

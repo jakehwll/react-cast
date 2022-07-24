@@ -11,6 +11,9 @@ export const PlayerHandlerContext = createContext(
     play(): void
     pause(): void
     stop(): void
+    isPlaying: boolean | null
+    isBuffering: boolean | null
+    isIdle: boolean | null
     // volume
     setVolume(val: number): void
     mute(): void
@@ -81,6 +84,15 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
       () => setPlayerState(PLAYER_STATE.IDLE),
       (errorCode) => console.warn('[react-cast]', getErrorMessage(errorCode))
     )
+  const isPlaying = media
+    ? media.playerState === chrome.cast.media.PlayerState.PLAYING
+    : null
+  const isBuffering = media
+    ? media.playerState === chrome.cast.media.PlayerState.BUFFERING
+    : null
+  const isIdle = media
+    ? media.playerState === chrome.cast.media.PlayerState.IDLE
+    : null
 
   // state functions
   const setVolume = (val: number) =>
@@ -131,9 +143,11 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
     if (!session) return
     var mediaInfo = new chrome.cast.media.MediaInfo(url, contentType)
     var request = new chrome.cast.media.LoadRequest(mediaInfo)
+    setPlayerState(PLAYER_STATE.BUFFERING)
     session.loadMedia(
       request,
       (media: chrome.cast.media.Media) => {
+        setPlayerState(PLAYER_STATE.LOADED)
         setMedia(media)
       },
       (errorCode) => console.error('[react-cast]' + errorCode)
@@ -147,6 +161,9 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
         play,
         pause,
         stop,
+        isPlaying,
+        isBuffering,
+        isIdle,
         // volume
         setVolume,
         mute,

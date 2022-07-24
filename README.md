@@ -103,6 +103,25 @@ const Playback = () => {
 }
 ```
 
+- `isPlaying` Whether the player is currently playing back content or not.
+- `isBuffering` Whether the player is currently buffering/loading the content.
+- `isIdle` Whether player has content to render or not.
+
+```jsx
+import { PlayerHandlerContext } from 'react-cast/contexts/player'
+
+const PlaybackControls = () => {
+  const { play, pause, isPlaying, isBuffering, isIdle } = useContext(PlayerHandlerContext)
+
+  if ( isIdle ): return <>{/** NO ICON **/}</>
+  else if ( isBuffering ): return <>{/** BUFFERING ICON **/}</>
+  else:
+    { isPlaying ?
+      <button type="button" onClick={() => pause()}>{/** PAUSE ICON **/}</button> :
+      <button type="button" onClick={() => play()}>{/** PLAY ICON **/}</button> }
+}
+```
+
 #### Audio
 
 - `setVolume(val)` Sets the players volume to a range between `0.0` and `1.0`.

@@ -103,6 +103,8 @@ const Playback = () => {
 }
 ```
 
+#### Playback Controls
+
 - `isPlaying` Whether the player is currently playing back content or not.
 - `isBuffering` Whether the player is currently buffering/loading the content.
 - `isIdle` Whether player has content to render or not.
@@ -188,6 +190,9 @@ const Session = () => {
 ```
 
 #### States
+
+> **Note**:
+> This is mostly for internal tracking of the state, if you're looking to create a UI please see the example in [Playback](#playback-controls)
 
 - `playerState` The current `state` of the player, valid elements are contained in `VALID_STATES`
 - `setPlayerState` Takes a string from `VALID_STATES`

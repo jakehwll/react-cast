@@ -66,7 +66,17 @@ This will provide both the `CastPlayerContext` and `PlayerHandlerContext` to be 
 #### Casting
 
 - `useCast()` Starts the cast session between sender and receiver.
-- `useMedia(value)` Begins the playback of a piece of media to the receiver.
+- `useMedia(val: object)` Begins the playback of a piece of media to the receiver.
+
+```jsx
+// Example Media Object
+const mediaObject = {
+  // a `https` url for the player to load.
+  url: 'https://commondatastorage.googleapis.com/gtv-videos-bucketbig_buck_bunny_1080p.mp4',
+  // a video/audio mime-type, i.e `video/mp4`, `audio/mp3`, `video/
+  contentType: 'video/mp4',
+}
+```
 
 ```jsx
 import { PlayerHandlerContext } from 'react-cast/contexts/player'
@@ -80,15 +90,7 @@ const Casting = () => {
         Cast
       </button>
       {/** Send some media from the sender to the receiver to render. **/}
-      <button
-        type='button'
-        onClick={() =>
-          useMedia({
-            url: 'https://commondatastorage.googleapis.com/gtv-videos-bucketbig_buck_bunny_1080p.mp4',
-            contentType: 'video/mp4',
-          })
-        }
-      >
+      <button type='button' onClick={() => useMedia(mediaObject)}>
         Media
       </button>
     </>
@@ -146,7 +148,7 @@ const PlaybackControls = () => {
 
 #### Audio
 
-- `setVolume(val)` Sets the players volume to a range between `0.0` and `1.0`.
+- `setVolume(val: number)` Sets the players volume to a range between `0.0` and `1.0`.
 - `mute()` Completely mutes the output of the player.
 - `unmute()` Complete unmutes the output of the player. ([Issue](https://github.com/jakehwll/react-cast/issues/1))
 - `isMuted` A `boolean` value as to whether the current output is muted or not.
@@ -186,6 +188,8 @@ const Volume = () => {
 
 ```jsx
 const Seeker = () => {
+  const { currentTime, duration, seekTo } = useContext(PlayerHandlerContext)
+
   return (
     <>
       <span>{currentTime}</span>

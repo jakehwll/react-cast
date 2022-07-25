@@ -165,11 +165,27 @@ const Volume = () => {
 
 #### Seeking
 
-- `seekTo()` **UNIMPLEMENTED**
+- `currentTime` The current playhead of the player ([Issue](https://github.com/jakehwll/react-cast/issues/2))
+- `duration` The complete duration length of the current loaded media.
+- `seekTo(val: number)` Jumps the player to the provided `val` index.
 
 ```jsx
-{
-  /** TODO **/
+const Seeker = () => {
+  return (
+    <>
+      <span>{currentTime}</span>
+      <input
+        type='range'
+        value={currentTime ?? 0}
+        min={0}
+        max={duration ?? 0}
+        onChange={(event) => {
+          seekTo(parseInt(event.target.value))
+        }}
+      />
+      <span>{duration}</span>
+    </>
+  )
 }
 ```
 

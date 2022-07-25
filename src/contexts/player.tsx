@@ -20,6 +20,8 @@ export const PlayerHandlerContext = createContext(
     unmute(): void
     isMuted: boolean | null
     // seeker
+    currentTime: number | null
+    duration: number | null
     seekTo(val: number): void
     // state
     useCast(): void
@@ -119,7 +121,21 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
     )
   const isMuted = media ? media.volume.muted : null
 
-  const seekTo = () => {}
+  const currentTime = media ? media.getEstimatedTime() : null
+  const duration = media ? media.media.duration : null
+
+  const seekTo = (val: number) =>
+    media
+      ? media.seek(
+          (function () {
+            const _seekRequest = new chrome.cast.media.SeekRequest()
+            _seekRequest.currentTime = val
+            return _seekRequest
+          })(),
+          () => {},
+          () => {}
+        )
+      : null
 
   function useCast() {
     chrome.cast.requestSession(
@@ -170,6 +186,8 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
         unmute,
         isMuted,
         // seeker
+        currentTime,
+        duration,
         seekTo,
         // state
         useCast,

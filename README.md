@@ -20,7 +20,7 @@ yarn add @jakehwll/react-cast
 - [x] Send URL to Chromecast to play.
 - [x] Control playback with `play()`, `pause()`, `stop()`.
 - [ ] (Partially implemented) Get audio and control with `volume` and `setVolume`.
-- [ ] Get `currentTime` and control with `seek()`
+- [ ] (Partially implemented) Get `currentTime` and control with `seek()`
 - [ ] Watches events for updates on chromecast device.
 
 ### Planned Features

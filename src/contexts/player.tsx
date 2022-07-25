@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { getErrorMessage } from '../utils/error'
-import { CastPlayerContext, PLAYER_STATE } from './cast'
+import { CastPlayerContext } from './cast'
 
 // TODO receiverApplicationId
 // TODO autoJoinPolicy
@@ -30,10 +30,7 @@ export const PlayerHandlerContext = createContext(
 )
 
 const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
-  const { setPlayerState, session, setSession } = useContext(CastPlayerContext)
-  const [playerTarget, setPlayerTarget] = useState<
-    undefined | cast.framework.RemotePlayer
-  >(undefined)
+  const { session, setSession } = useContext(CastPlayerContext)
   const [media, setMedia] = useState<chrome.cast.media.Media | undefined>()
 
   function initialize({
@@ -69,21 +66,21 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
     media &&
     media.play(
       new chrome.cast.media.PlayRequest(),
-      () => setPlayerState(PLAYER_STATE.PLAYING),
+      () => {},
       (errorCode) => console.warn('[react-cast]', getErrorMessage(errorCode))
     )
   const pause = () =>
     media &&
     media.pause(
       new chrome.cast.media.PauseRequest(),
-      () => setPlayerState(PLAYER_STATE.PAUSED),
+      () => {},
       (errorCode) => console.warn('[react-cast]', getErrorMessage(errorCode))
     )
   const stop = () =>
     media &&
     media.stop(
       new chrome.cast.media.StopRequest(),
-      () => setPlayerState(PLAYER_STATE.IDLE),
+      () => {},
       (errorCode) => console.warn('[react-cast]', getErrorMessage(errorCode))
     )
   const isPlaying = media
@@ -133,7 +130,8 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
             return _seekRequest
           })(),
           () => {},
-          () => {}
+          (errorCode) =>
+            console.warn('[react-cast]', getErrorMessage(errorCode))
         )
       : null
 
@@ -142,10 +140,7 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
       (e) => {
         setSession(e)
       },
-      (errorCode) => {
-        setPlayerState(PLAYER_STATE.IDLE)
-        console.warn('[react-cast]', getErrorMessage(errorCode))
-      }
+      (errorCode) => console.warn('[react-cast]', getErrorMessage(errorCode))
     )
   }
 
@@ -159,13 +154,9 @@ const PlayerHandler = ({ children }: { children: React.ReactNode }) => {
     if (!session) return
     var mediaInfo = new chrome.cast.media.MediaInfo(url, contentType)
     var request = new chrome.cast.media.LoadRequest(mediaInfo)
-    setPlayerState(PLAYER_STATE.BUFFERING)
     session.loadMedia(
       request,
-      (media: chrome.cast.media.Media) => {
-        setPlayerState(PLAYER_STATE.LOADED)
-        setMedia(media)
-      },
+      (media: chrome.cast.media.Media) => setMedia(media),
       (errorCode) => console.error('[react-cast]' + errorCode)
     )
   }

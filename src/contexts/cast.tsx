@@ -4,25 +4,12 @@ import React, { createContext, useState } from 'react'
 // TODO "Skippable" content.
 // TODO `androidReceiverCompatible`
 // TODO Queues
-// TODO Advertismenets
-
-export type validStates = 'IDLE' | 'BUFFERING' | 'LOADED' | 'PLAYING' | 'PAUSED'
-
-export const PLAYER_STATE = {
-  IDLE: 'IDLE',
-  BUFFERING: 'BUFFERING',
-  LOADED: 'LOADED',
-  PLAYING: 'PLAYING',
-  PAUSED: 'PAUSED',
-}
+// TODO Advertisements
 
 interface CastPlayerContextProps {
   // session
   readonly session: chrome.cast.Session | undefined
   setSession(val: chrome.cast.Session): void
-  // states
-  readonly playerState: string | undefined
-  setPlayerState(val: string): void
   // info
   readonly mediaInfo: object
   setMediaInfo(val: object): void
@@ -36,8 +23,6 @@ interface CastPlayerProps {
 
 const CastPlayer = ({ children }: CastPlayerProps) => {
   const [session, setSession] = useState<chrome.cast.Session | undefined>()
-  const [playerState, setPlayerState] = useState(PLAYER_STATE.IDLE)
-
   const [mediaInfo, setMediaInfo] = useState({})
 
   return (
@@ -46,9 +31,6 @@ const CastPlayer = ({ children }: CastPlayerProps) => {
         // session
         session,
         setSession,
-        // states
-        playerState,
-        setPlayerState,
         // info
         mediaInfo,
         setMediaInfo,

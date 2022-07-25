@@ -235,35 +235,6 @@ const Session = () => {
 }
 ```
 
-#### States
-
-> **Note**:
-> This is mostly for internal tracking of the state, if you're looking to create a UI please see the example in [Playback](#playback-controls)
-
-- `playerState` The current `state` of the player, valid elements are contained in `VALID_STATES`
-- `setPlayerState` Takes a string from `VALID_STATES`
-
-```jsx
-import { CastPlayerContext } from 'react-cast/contexts/cast'
-
-const State = () => {
-  const { playerState } = useContext(CastPlayerContext)
-
-  return (
-    <>
-      Current player state: {playerState}
-      <ul>
-        <li>Idle? {(playerState === 'IDLE').toString()}</li>
-        <li>Buffering? {(playerState === 'BUFFERING').toString()}</li>
-        <li>Loaded? {(playerState === 'LOADED').toString()}</li>
-        <li>Playing? {(playerState === 'PLAYING').toString()}</li>
-        <li>Paused? {(playerState === 'PAUSED').toString()}</li>
-      </ul>
-    </>
-  )
-}
-```
-
 #### Media Info
 
 ```

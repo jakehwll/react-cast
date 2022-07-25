@@ -30,6 +30,21 @@ yarn add @jakehwll/react-cast
 - Advertisements support.
 - `androidReceiverCompatible` support.
 - `autoJoinPolicy`/`receiveApplicationId` support.
+- Resumable Session
+
+## Library Comparison
+
+|                             | `react-cast` | `react-chromecast` |
+| --------------------------- | ------------ | ------------------ |
+| Cast URL                    | ✅           | ✅                 |
+| `play()` `pause()` `stop()` | ✅           | ✅                 |
+| `seekTo()`                  | ✅           | ✅                 |
+| `volume()` `setVolume()`    | ✅\*         | ❌                 |
+| Queue                       | ❓\*\*       | ✅                 |
+| Live Playback               | ❓\*\*       | ❌                 |
+
+\* Partially implemented.
+\*\* Planned feature.
 
 ## Usage
 

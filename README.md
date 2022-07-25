@@ -34,17 +34,19 @@ yarn add @jakehwll/react-cast
 
 ## Library Comparison
 
-|                             | `react-cast` | `react-chromecast` |
-| --------------------------- | ------------ | ------------------ |
-| Cast URL                    | ✅           | ✅                 |
-| `play()` `pause()` `stop()` | ✅           | ✅                 |
-| `seekTo()`                  | ✅           | ✅                 |
-| `volume()` `setVolume()`    | ✅\*         | ❌                 |
-| Queue                       | ❓\*\*       | ✅                 |
-| Live Playback               | ❓\*\*       | ❌                 |
+|                             | `react-cast` | `react-chromecast`\*\*\* |
+| --------------------------- | ------------ | ------------------------ |
+| Cast URL                    | ✅           | ✅                       |
+| `play()` `pause()` `stop()` | ✅           | ✅                       |
+| `seekTo()`                  | ✅           | ✅                       |
+| `volume()` `setVolume()`    | ✅\*         | ❌                       |
+| Queue                       | ❓\*\*       | ✅                       |
+| Live Playback               | ❓\*\*       | ❌                       |
+| Advertisements Support      | ❓\*\*       | ❌                       |
 
-\* Partially implemented.
-\*\* Planned feature.
+- \* Partially implemented.
+- \*\* Planned feature.
+- \*\*\* Library is in alpha/abandoned.
 
 ## Usage
 
@@ -83,6 +85,7 @@ import { PlayerHandlerContext } from 'react-cast/contexts/player'
 
 const Casting = () => {
   const { useCast, useMedia } = useContext(PlayerHandlerContext)
+
   return (
     <>
       {/** Initiate a connection between sender and receiver. **/}
@@ -109,6 +112,7 @@ import { PlayerHandlerContext } from 'react-cast/contexts/player'
 
 const Playback = () => {
   const { play, pause, stop } = useContext(PlayerHandlerContext)
+
   return (
     <>
       <button type='button' onClick={() => play()}>
@@ -158,6 +162,7 @@ import { PlayerHandlerContext } from 'react-cast/contexts/player'
 
 const Volume = () => {
   const { mute, unmute, setVolume } = useContext(PlayerHandlerContext)
+
   return (
     <>
       <button type='button' onClick={() => mute()}>
@@ -217,8 +222,9 @@ const Seeker = () => {
 - `session` The current `chrome.cast.Session` if one is defined.
 
 ```jsx
-const { session } = useContext(CastPlayerContext)
 const Session = () => {
+  const { session } = useContext(CastPlayerContext)
+
   return (
     <>
       <span>
